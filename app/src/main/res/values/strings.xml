@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">myJournal</string>
+    <string name="btn_back"><![CDATA[<< Back]]></string>
 
 </resources>

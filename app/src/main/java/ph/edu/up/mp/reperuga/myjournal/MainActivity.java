@@ -294,13 +294,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_add) {
+
             startActivity(new Intent(MainActivity.this, PostActivity.class));
+
         }
+
         
         if(item.getItemId() == R.id.action_logout) {
             
             logout();
             
+        }
+
+
+        if(item.getItemId() == R.id.action_settings) {
+
+            startActivity(new Intent(MainActivity.this, AccountSettingsActivity.class));
+
         }
         
         return super.onOptionsItemSelected(item);
