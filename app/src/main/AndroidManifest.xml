@@ -25,7 +25,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SetupActivity" />
-        <activity android:name=".JournalSingleActivity"></activity>
+        <activity android:name=".JournalSingleActivity" />
+        <activity android:name=".ResetPasswordActivity"></activity>
     </application>
 
 </manifest>
