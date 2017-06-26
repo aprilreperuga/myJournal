@@ -2,9 +2,9 @@ package ph.edu.up.mp.reperuga.myjournal;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText mPasswordField;
 
     private Button mRegisterBtn;
+    private Button mSignInBtn;
+    private Button mResetPswdBtn;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -35,6 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //Get Firebase auth instance
         mAuth = FirebaseAuth.getInstance();
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -45,6 +48,28 @@ public class RegisterActivity extends AppCompatActivity {
         mEmailField = (EditText) findViewById(R.id.emailField);
         mPasswordField = (EditText) findViewById(R.id.passwordField);
         mRegisterBtn = (Button) findViewById(R.id.registerBtn);
+
+        // Newly Added Buttons
+        mSignInBtn = (Button) findViewById(R.id.sign_in_button);
+        mResetPswdBtn = (Button) findViewById(R.id.btn_reset_password);
+
+        mResetPswdBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(RegisterActivity.this, ResetPasswordActivity.class));
+
+            }
+        });
+
+        mSignInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+            }
+        });
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         mProgress.dismiss();
 
-                        Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+                        Intent mainIntent = new Intent(RegisterActivity.this, SetupActivity.class); //MainActivity.class
                         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(mainIntent);
 
