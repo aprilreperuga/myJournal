@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2196F3"
+    android:background="@color/colorBackground"
     tools:context="ph.edu.up.mp.reperuga.myjournal.LoginActivity">
 
     <ImageView
@@ -28,7 +28,6 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        android:textColor="@android:color/white"
         tools:layout_editor_absoluteX="71dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -40,11 +39,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:textColor="@android:color/white"
         tools:layout_editor_absoluteX="71dp"
         tools:layout_editor_absoluteY="70dp" />
 
@@ -54,28 +52,31 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginBtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"></com.google.android.gms.common.SignInButton>
+        android:layout_marginTop="16dp"></com.google.android.gms.common.SignInButton>
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="105dp"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_below="@+id/loginPasswordField"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:background="@android:color/white"
         android:text="Login"
+        android:textColor="#616161"
         tools:layout_editor_absoluteX="135dp"
         tools:layout_editor_absoluteY="122dp" />
 
     <Button
         android:id="@+id/createNewAccountBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:background="@color/colorSecondary"
         android:text="Create A New Account" />
 
 </RelativeLayout>
