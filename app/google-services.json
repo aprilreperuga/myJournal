@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "100950645869",
+    "firebase_url": "https://myjournal-27f35.firebaseio.com",
+    "project_id": "myjournal-27f35",
+    "storage_bucket": "myjournal-27f35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100950645869:android:487a9b9a6c7c76f5",
+        "android_client_info": {
+          "package_name": "ph.edu.up.mp.reperuga.myjournal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100950645869-vnajfarn3is0k7nlgjriqeh6u1lohest.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.edu.up.mp.reperuga.myjournal",
+            "certificate_hash": "cff2300e97cc69e369306c68769131240f545641"
+          }
+        },
+        {
+          "client_id": "100950645869-7fm3u0kac6i6girue1fqk1blgpno811l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYSq0ulJFQV7-9i1UXiJwHRMWCyhjLbSc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "100950645869-7fm3u0kac6i6girue1fqk1blgpno811l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
