@@ -37,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mLoginPasswordField;
     private Button mLoginBtn;
 
+    private Button mSignupBtn, mResetBtn;
+
 
     private FirebaseAuth mAuth;
 
@@ -71,6 +73,31 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginBtn = (Button) findViewById(R.id.loginBtn);
 
+        //Newly added buttons
+        mSignupBtn = (Button) findViewById(R.id.btn_signup);
+        mResetBtn = (Button) findViewById(R.id.btn_reset_password);
+
+        //Create New Account Button
+        mSignupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+
+            }
+        });
+
+        //Reset Password Button
+        mResetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
+
+            }
+        });
+
+        //Login Account Button
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -178,7 +205,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
+    // Login using Email and Password
     private void checkLogin() {
 
         String email = mLoginEmailField.getText().toString().trim();

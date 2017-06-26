@@ -96,7 +96,7 @@
             android:background="@null"
             android:text="Already registered? Log Me In!"
             android:textAllCaps="false"
-            android:textColor="#000000"
+            android:textColor="#212121"
             android:textSize="15dp" />
 
     </LinearLayout>
