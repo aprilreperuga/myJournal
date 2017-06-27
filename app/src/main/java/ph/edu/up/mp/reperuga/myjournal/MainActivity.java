@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mJournalList;
 
+    static boolean calledAlready = false;
+
     private DatabaseReference mDatabase;
 
     private DatabaseReference mDatabaseLike;
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (!calledAlready)
+        {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            calledAlready = true;
+        }
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,10 +72,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // For Disk Persistance (cached data is synced)
-        // Enabling offline capabilities
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        
+
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -81,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Journal");
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
@@ -336,7 +345,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        if(item.getItemId() == R.id.action_view_journals) {
+        if(item.getItemId() == R.id.action_view_home) {
 
             startActivity(new Intent(MainActivity.this, MainActivity.class));
 

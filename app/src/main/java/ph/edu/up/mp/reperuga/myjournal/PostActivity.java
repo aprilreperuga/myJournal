@@ -197,7 +197,7 @@ public class PostActivity extends AppCompatActivity {
 
         }
 
-        if(item.getItemId() == R.id.action_view_journals) {
+        if(item.getItemId() == R.id.action_view_home) {
 
             startActivity(new Intent(PostActivity.this, MainActivity.class));
 

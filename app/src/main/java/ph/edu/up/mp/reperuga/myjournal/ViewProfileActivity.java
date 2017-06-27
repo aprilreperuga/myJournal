@@ -85,7 +85,7 @@ public class ViewProfileActivity extends AppCompatActivity {
 
         }
 
-        if(item.getItemId() == R.id.action_view_journals) {
+        if(item.getItemId() == R.id.action_view_home) {
 
             startActivity(new Intent(ViewProfileActivity.this, MainActivity.class));
 

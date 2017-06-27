@@ -377,7 +377,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         }
 
-        if(item.getItemId() == R.id.action_view_journals) {
+        if(item.getItemId() == R.id.action_view_home) {
 
             startActivity(new Intent(AccountSettingsActivity.this, MainActivity.class));
 

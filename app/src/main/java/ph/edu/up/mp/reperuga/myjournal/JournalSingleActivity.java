@@ -22,7 +22,8 @@ import com.squareup.picasso.Picasso;
 
 public class JournalSingleActivity extends AppCompatActivity {
 
-    private FloatingActionButton fab_edit;
+    private FloatingActionButton mEditBtn;
+
     private FloatingActionButton mSingleRemoveBtn;
 
     private String mPost_key = null;
@@ -44,12 +45,14 @@ public class JournalSingleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_journal_single);
 
 
-        fab_edit = (FloatingActionButton) findViewById(R.id.fab_edit);
-        fab_edit.setOnClickListener(new View.OnClickListener() {
+        mEditBtn = (FloatingActionButton) findViewById(R.id.fab_edit);
+        mEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(JournalSingleActivity.this, EditJournalActivity.class);
                 startActivity(intent);
+
+
             }
         });
 
@@ -116,6 +119,8 @@ public class JournalSingleActivity extends AppCompatActivity {
 
     }
 
+
+
     public void alertMessage() {
 
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -172,7 +177,7 @@ public class JournalSingleActivity extends AppCompatActivity {
 
         }
 
-        if(item.getItemId() == R.id.action_view_journals) {
+        if(item.getItemId() == R.id.action_view_home) {
 
             startActivity(new Intent(JournalSingleActivity.this, MainActivity.class));
 
