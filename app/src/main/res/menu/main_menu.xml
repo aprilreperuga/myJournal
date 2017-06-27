@@ -2,10 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/action_add"
-        android:icon="@mipmap/ic_add_white_24dp"
-        android:title="Add Post"
-        app:showAsAction="always" />
+
+    <item android:id="@+id/action_view_journals"
+        android:title="Home"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_view_profile"
+        android:title="View Profile"
+        app:showAsAction="never" />
 
     <item android:id="@+id/action_settings"
         android:title="Settings"

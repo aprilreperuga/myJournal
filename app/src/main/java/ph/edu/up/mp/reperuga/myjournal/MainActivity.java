@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,8 @@ import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FloatingActionButton fab;
+
     private RecyclerView mJournalList;
 
     private DatabaseReference mDatabase;
@@ -42,6 +45,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PostActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -293,17 +307,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_add) {
-
-            startActivity(new Intent(MainActivity.this, PostActivity.class));
-
-        }
 
         
         if(item.getItemId() == R.id.action_logout) {
             
             logout();
             
+        }
+
+        if(item.getItemId() == R.id.action_view_profile) {
+
+            startActivity(new Intent(MainActivity.this, ViewProfileActivity.class));
+
+        }
+
+        if(item.getItemId() == R.id.action_view_journals) {
+
+            startActivity(new Intent(MainActivity.this, MainActivity.class));
+
         }
 
 
@@ -321,4 +342,6 @@ public class MainActivity extends AppCompatActivity {
         mAuth.signOut();
 
     }
+
+
 }
