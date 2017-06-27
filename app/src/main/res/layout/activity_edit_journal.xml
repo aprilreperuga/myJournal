@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ph.edu.up.mp.reperuga.myjournal.MainActivity">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/journal_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackground">
-
-    </android.support.v7.widget.RecyclerView>
+    tools:context="ph.edu.up.mp.reperuga.myjournal.EditJournalActivity">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -20,6 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@mipmap/ic_add" />
+        android:src="@mipmap/ic_check" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<android.support.design.widget.CoordinatorLayout
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/colorBackground"
     tools:context="ph.edu.up.mp.reperuga.myjournal.JournalSingleActivity">
 
@@ -73,19 +74,29 @@
 
     </ScrollView>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_edit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@mipmap/ic_edit"
+        app:fabSize="normal"
+        fab:backgroundTint="@color/colorSecondary" />
 
-        <Button
-            android:id="@+id/singleRemoveBtn"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorSecondary"
-            android:text="Remove Post"
-            android:visibility="invisible" />
-    </RelativeLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/singleRemoveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:src="@mipmap/ic_delete_post"
+        app:fabSize="normal"
+        app:layout_anchor="@id/fab_edit"
+        app:layout_anchorGravity="top|center"
+        app:useCompatPadding="true"
+        fab:backgroundTint="@android:color/holo_red_dark"
+        android:visibility="invisible"/>
 
-</RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

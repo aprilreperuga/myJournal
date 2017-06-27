@@ -28,7 +28,8 @@
         <activity android:name=".JournalSingleActivity" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".AccountSettingsActivity" />
-        <activity android:name=".ViewProfileActivity"></activity>
+        <activity android:name=".ViewProfileActivity" />
+        <activity android:name=".EditJournalActivity"></activity>
     </application>
 
 </manifest>

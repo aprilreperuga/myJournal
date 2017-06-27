@@ -314,6 +314,8 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
     }
 
+
+
     //sign out method
     private void signOut() {
 

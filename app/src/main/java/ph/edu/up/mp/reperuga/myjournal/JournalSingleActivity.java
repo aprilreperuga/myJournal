@@ -1,12 +1,14 @@
 package ph.edu.up.mp.reperuga.myjournal;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,9 @@ import com.squareup.picasso.Picasso;
 
 public class JournalSingleActivity extends AppCompatActivity {
 
+    private FloatingActionButton fab_edit;
+    private FloatingActionButton mSingleRemoveBtn;
+
     private String mPost_key = null;
 
     private DatabaseReference mDatabase;
@@ -31,12 +36,23 @@ public class JournalSingleActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    private Button mSingleRemoveBtn;
+    //private Button mSingleRemoveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_single);
+
+
+        fab_edit = (FloatingActionButton) findViewById(R.id.fab_edit);
+        fab_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(JournalSingleActivity.this, EditJournalActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Journal");
 
@@ -48,7 +64,7 @@ public class JournalSingleActivity extends AppCompatActivity {
         mJournalSingleTitle = (TextView) findViewById(R.id.singleJournalTitle);
         mJournalSingleDesc = (TextView) findViewById(R.id.singleJournalDesc);
 
-        mSingleRemoveBtn = (Button) findViewById(R.id.singleRemoveBtn);
+        mSingleRemoveBtn = (FloatingActionButton) findViewById(R.id.singleRemoveBtn);
 
         //Toast.makeText(JournalSingleActivity.this, post_key, Toast.LENGTH_LONG).show();
 
@@ -83,18 +99,52 @@ public class JournalSingleActivity extends AppCompatActivity {
         });
 
 
-        mSingleRemoveBtn.setOnClickListener(
-                new View.OnClickListener() {
+        mSingleRemoveBtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
-                mDatabase.child(mPost_key).removeValue();
-                Intent mainIntent = new Intent(JournalSingleActivity.this, MainActivity.class);
-                startActivity(mainIntent);
+                alertMessage();
+
+                //mDatabase.child(mPost_key).removeValue();
+                //Intent mainIntent = new Intent(JournalSingleActivity.this, MainActivity.class);
+                //startActivity(mainIntent);
 
             }
         });
 
+
+    }
+
+    public void alertMessage() {
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+
+                switch (which) {
+
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //YES Button Clicked
+                        mDatabase.child(mPost_key).removeValue();
+                        Intent mainIntent = new Intent(JournalSingleActivity.this, MainActivity.class);
+                        startActivity(mainIntent);
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //NO Button Clicked
+                        //do nothing
+
+
+                }
+
+            }
+
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure to delete?")
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
 
     }
 
