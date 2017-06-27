@@ -21,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
@@ -35,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseLike;
 
     private DatabaseReference mDatabaseUsers;
+
+    private DatabaseReference mDatabaseCurrentUser;
+
+    private Query mQueryCurrentUser;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -77,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseLike = FirebaseDatabase.getInstance().getReference().child("Likes");
 
+        String currentUserId = mAuth.getCurrentUser().getUid();
+
+        mDatabaseCurrentUser = FirebaseDatabase.getInstance().getReference().child("Journal");
+
+        mQueryCurrentUser = mDatabaseCurrentUser.orderByChild("uid").equalTo(currentUserId);
+
         mDatabaseUsers.keepSynced(true);
         mDatabaseLike.keepSynced(true);
         mDatabase.keepSynced(true);
@@ -105,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 Journal.class,
                 R.layout.journal_row,
                 JournalViewHolder.class,
-                mDatabase
+                mQueryCurrentUser
 
         ) {
             @Override
