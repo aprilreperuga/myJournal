@@ -7,17 +7,19 @@ import android.view.View;
 
 public class EditJournalActivity extends AppCompatActivity {
 
-    private FloatingActionButton fab;
+    private FloatingActionButton fab_update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_journal);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab_update = (FloatingActionButton) findViewById(R.id.fab_update);
+        fab_update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
 
             }
         });

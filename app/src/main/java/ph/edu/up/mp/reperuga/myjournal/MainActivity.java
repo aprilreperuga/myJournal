@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // For Disk Persistance (cached data is synced)
+        // Enabling offline capabilities
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
