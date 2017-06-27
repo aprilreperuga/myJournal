@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mJournalList;
 
-    static boolean calledAlready = false;
+    //static boolean calledAlready = false;
 
     private DatabaseReference mDatabase;
 
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
         if (!calledAlready)
         {
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+        */
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -1,64 +1,107 @@
 package ph.edu.up.mp.reperuga.myjournal;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 public class ViewProfileActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     private DatabaseReference mDatabaseUsers;
     private DatabaseReference mDatabase;
 
-    private FirebaseAuth mAuth;
-
     private ImageView mViewProfileImg;
     private TextView mViewUsername;
+    private TextView mViewEmail;
+    private TextView mViewUserId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
-        mAuth = FirebaseAuth.getInstance();
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Journal");
-        mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
-
         mViewProfileImg = (ImageView) findViewById(R.id.viewProfileImage);
         mViewUsername = (TextView) findViewById(R.id.viewUsername);
+        mViewEmail = (TextView) findViewById(R.id.viewEmail);
+        mViewUserId = (TextView) findViewById(R.id.viewUserId);
 
-        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+        //get Firebase auth instance
+        mAuth = FirebaseAuth.getInstance();
 
+        //get current user
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        setDataToView(user);
+
+        //add an auth listener
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @SuppressLint("SetTextI18n")
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-                String user_profileimg = (String) dataSnapshot.child("image").getValue();
-                String user_name = (String) dataSnapshot.child("name").getValue();
+                Log.d("ViewProfileActivity", "onAuthStateChanged");
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user != null) {
+                    setDataToView(user);
 
-                mViewUsername.setText(user_name);
+                    //loading image by Picasso
+                    if(user.getPhotoUrl() != null) {
 
-                Picasso.with(ViewProfileActivity.this).load(user_profileimg).into(mViewProfileImg);
+                        Log.d("ViewProfileActivity", "photoURL: " + user.getPhotoUrl());
+                        Picasso.with(ViewProfileActivity.this).load(user.getPhotoUrl())
+                                .transform(new CropCircleTransformation()).into(mViewProfileImg);
+
+                    }
+                } else {
+
+                    //user auth state is not existed or closed, return to Main activity
+                    startActivity(new Intent(ViewProfileActivity.this, MainActivity.class));
+                    finish();
+
+                }
 
             }
+        };
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+    }
 
-            }
-        });
+    @SuppressLint("SetTextI18n")
+    private void setDataToView(FirebaseUser user) {
 
+        mViewUsername.setText(user.getDisplayName());
+        mViewEmail.setText("USER EMAIL: " + user.getEmail());
+        mViewUserId.setText("USER ID: " + user.getUid());
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if(mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
 
