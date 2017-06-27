@@ -56,6 +56,9 @@
             android:paddingBottom="10dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
+            android:maxLines="2"
+            android:lines="2"
+            android:ellipsize="end"
             android:text="The Post Description Goes Here" />
 
         <TextView
