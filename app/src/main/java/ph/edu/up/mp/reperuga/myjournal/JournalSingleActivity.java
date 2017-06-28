@@ -49,8 +49,9 @@ public class JournalSingleActivity extends AppCompatActivity {
         mEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(JournalSingleActivity.this, EditJournalActivity.class);
-                startActivity(intent);
+
+                //Intent intent = new Intent(JournalSingleActivity.this, EditJournalActivity.class);
+                //startActivity(intent);
 
 
             }

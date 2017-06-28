@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -30,11 +30,12 @@ import com.google.firebase.storage.UploadTask;
 
 public class PostActivity extends AppCompatActivity {
 
+
     private ImageButton mSelectImage;
     private EditText mPostTitle;
     private EditText mPostDesc;
 
-    private Button mSubmitBtn;
+    private FloatingActionButton mSubmitBtn;
 
     private Uri mImageUri = null;
 
@@ -62,7 +63,10 @@ public class PostActivity extends AppCompatActivity {
 
 
         mStorage = FirebaseStorage.getInstance().getReference();
+
+        // [START initialize_database_ref]
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Journal");
+        // [END initialize_database_ref]
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
 
@@ -72,7 +76,7 @@ public class PostActivity extends AppCompatActivity {
         mPostTitle = (EditText) findViewById(R.id.titleField);
         mPostDesc = (EditText) findViewById(R.id.descField);
 
-        mSubmitBtn = (Button) findViewById(R.id.submitBtn);
+        mSubmitBtn = (FloatingActionButton) findViewById(R.id.submitBtn);
 
         mProgress = new ProgressDialog(this);
 
@@ -92,10 +96,13 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 startPosting();
+                //submitPost();
 
             }
         });
     }
+
+
 
     private void startPosting() {
 

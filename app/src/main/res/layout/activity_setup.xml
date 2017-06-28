@@ -9,8 +9,8 @@
 
     <ImageButton
         android:id="@+id/setupImageBtn"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
@@ -40,6 +40,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="@color/colorSecondary"
-        android:text="Finish Setup" />
+        android:background="?attr/colorAccent"
+        android:text="Finish Setup"
+        android:textStyle="bold" />
 </RelativeLayout>

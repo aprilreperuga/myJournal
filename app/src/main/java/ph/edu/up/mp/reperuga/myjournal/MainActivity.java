@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mJournalList;
 
-    //static boolean calledAlready = false;
-
     private DatabaseReference mDatabase;
 
     private DatabaseReference mDatabaseLike;
@@ -53,15 +51,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
-        if (!calledAlready)
-        {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-            calledAlready = true;
-        }
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        */
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -96,11 +85,11 @@ public class MainActivity extends AppCompatActivity {
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
         mDatabaseLike = FirebaseDatabase.getInstance().getReference().child("Likes");
 
-        String currentUserId = mAuth.getCurrentUser().getUid();
+        String currentUserId = mAuth.getCurrentUser().getUid(); //
 
         mDatabaseCurrentUser = FirebaseDatabase.getInstance().getReference().child("Journal");
 
-        mQueryCurrentUser = mDatabaseCurrentUser.orderByChild("uid").equalTo(currentUserId);
+        mQueryCurrentUser = mDatabaseCurrentUser.orderByChild("uid").equalTo(currentUserId); //
 
         mDatabaseUsers.keepSynced(true);
         mDatabaseLike.keepSynced(true);
@@ -131,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.journal_row,
                 JournalViewHolder.class,
                 mQueryCurrentUser
-
+                //mDatabase
         ) {
             @Override
             protected void populateViewHolder(JournalViewHolder viewHolder, Journal model, int position) {
